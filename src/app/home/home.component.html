@@ -1,0 +1,41 @@
+<h1>Welcome!</h1>
+
+<div class="play-container">
+    <p> Example of one way data binding: component to template or vice-versa </p>
+    <p>You've clicked <button (click)="countClick()">this</button> {{ clickCounter }} times.</p>
+    <!-- 
+        (click) lo que hace es registrar cuando se hace click en el boton.  buscar por angular event binding types para mas ejemplos
+        countClick() es una funcion que crearemos ahora en home.component.ts
+        clickCounter es una variable que estará definida en home.component.ts
+    -->
+</div>
+
+<div class="play-container">
+    <p> two way data binding - receives and sends information from the component </p>
+    <p>
+        <!-- para usar este hay que importar un modulo en app.module.ts 
+            y definir la variable name en nuestro component de home.component.ts -->
+        <input type="text" [(ngModel)]="name"><br> 
+        <strong>You said: </strong> {{ name }}
+    </p>
+</div> 
+
+
+<!-- para este ultimo ejemplo no hay que importar nada mas, nos apoyamos en los que ya hay creados
+        stylebinding -> con ngStyle añadimos unas condiciones que hacen que cambien los estilos
+-->
+<div class="play-container" [ngStyle] = "{
+    'background-color' : clickCounter > 4 ? 'yellow' : 'lightblue',
+    'border':             clickCounter > 4 ? '4px solid black' : none
+}">
+
+    <!-- If expression is true it will show the first <ng-template>, if not the second -->
+
+    <ng-template [ngIf]="clickCounter > 4" [ngIfElse]="none"> 
+        <p>The click counter <strong>IS GREATER</strong> than 4.</p>
+    </ng-template>
+
+    <ng-template #none>
+        <p>The click counter is <strong>not greater</strong> than 4.</p>
+    </ng-template>
+</div>

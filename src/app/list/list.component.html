@@ -1,0 +1,11 @@
+<h1>Breweries</h1>
+
+<p> Here we render a list of breweries grabbed from an http request to a external api </p>
+
+<ul *ngIf="brews"> <!-- *ngIf sirve para que si no llegan datos no se genere la lista -->
+  <li *ngFor="let brew of brews">
+    <p class="name">{{ brew.name }}</p>
+    <p class="country">{{ brew.country }}</p>
+    <a class="site" href="{{ brew.website_url }}"> website </a>
+  </li>
+</ul>
